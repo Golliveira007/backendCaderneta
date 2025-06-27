@@ -10,14 +10,14 @@ document.addEventListener('DOMContentLoaded', () => {
   function fecharLoginModal() {
   document.getElementById('login-modal')?.classList.add('hidden');
   }
-  
+
 
   // Botão de novo usuário
   const btnAdd = document.getElementById('add-user-btn');
   const modal = document.getElementById('user-form-modal');
   const cancel = document.getElementById('cancel-form');
 
-  if (btnAdd) {
+  if (btnAdd) {""
     btnAdd.addEventListener('click', () => {
       window.location.href = 'index.php?action=edit';
     });
