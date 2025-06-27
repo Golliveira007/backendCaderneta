@@ -1,8 +1,16 @@
 document.addEventListener('DOMContentLoaded', () => {
   // Verifica login via localStorage
   if (localStorage.getItem('loggedIn') !== 'true') {
-    window.location.href = '/login.html';
+  const loginModal = document.getElementById('login-modal');
+  if (loginModal) {
+    loginModal.classList.remove('hidden');
   }
+  }
+
+  function fecharLoginModal() {
+  document.getElementById('login-modal')?.classList.add('hidden');
+  }
+  
 
   // Botão de novo usuário
   const btnAdd = document.getElementById('add-user-btn');

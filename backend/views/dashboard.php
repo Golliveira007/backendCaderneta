@@ -29,7 +29,8 @@ $users = User::all();
 <body class="<?= $_SESSION['tipo'] ?>">
     <div class="container">
         <?php
-        if ($_SESSION['tipo'] == 'administrador'):
+        <div>
+            if ($_SESSION['tipo'] == 'administrador'):
             $user = $users ?? [];
             ?>
             <!-- Cabeçalho -->
@@ -122,6 +123,7 @@ $users = User::all();
                     </div>
 
                 </div>
+            </main>
         </div>
 
 
@@ -238,7 +240,7 @@ $users = User::all();
 
 
 
-    <?php elseif ($_SESSION['tipo'] == 'professor'): ?>
+        <?php elseif ($_SESSION['tipo'] == 'professor'): ?>
 
         <!-- Aplicação Principal (inicialmente oculta) -->
         <!-- Cabeçalho -->
@@ -327,7 +329,7 @@ $users = User::all();
         </div>
         </div>
 
-    <?php else: ?>
+        <?php else: ?>
 
 
         <div id="app" class="app-container">
@@ -455,7 +457,7 @@ $users = User::all();
             </div>
         </div>
 
-    <?php endif; ?>
+        <?php endif; ?>
     </div>
 
     <?php if ($_SESSION['tipo'] == 'administrador'): ?>
