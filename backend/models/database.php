@@ -1,23 +1,23 @@
 <?php
 class Database {
-    private static $instance = null;
+    private static $host = 'mysql.railway.internal'; // 👉 MYSQLHOST
+    private static $dbName = 'railway';               // 👉 MYSQLDATABASE
+    private static $username = 'root';             // 👉 MYSQLUSER
+    private static $password = 'ZjodAlDxngRCKLrgVzkXaUcslMamDmhV';               // 👉 MYSQLPASSWORD
+    private static $port = 3306;                            // 👉 ou use MYSQLPORT
 
     public static function getConnection() {
-        if (!self::$instance) {
-            $host = getenv('DB_HOST');
-            $port = getenv('DB_PORT');
-            $db   = getenv('DB_DATABASE');
-            $user = getenv('DB_USERNAME');
-            $pass = getenv('DB_PASSWORD');
-
-            try {
-                $pdo = new PDO("mysql:host=$host;port=$port;dbname=$db", $user, $pass);
-                $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            } catch (PDOException $e) {
-                die("Erro ao conectar ao banco de dados: " . $e->getMessage());
-            }
+        try {
+            $conn = new PDO(
+                "mysql:host=" . self::$host . ";port=" . self::$port . ";dbname=" . self::$dbName . ";charset=utf8",
+                self::$username,
+                self::$password
+            );
+            $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            return $conn;
+        } catch (PDOException $e) {
+            die("Erro ao conectar ao banco de dados: " . $e->getMessage());
         }
-        return self::$instance;
     }
 }
 ?>
