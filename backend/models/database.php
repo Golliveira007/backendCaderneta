@@ -4,15 +4,18 @@ class Database {
 
     public static function getConnection() {
         if (!self::$instance) {
-            $host = 'localhost';
-            $port = '3307'; 
-            $db = 'cadernetadigital';
-            $user = 'root';
-            $password = '';
+            $host = getenv('DB_HOST');
+            $port = getenv('DB_PORT');
+            $db   = getenv('DB_DATABASE');
+            $user = getenv('DB_USERNAME');
+            $pass = getenv('DB_PASSWORD');
 
-            
-            self::$instance = new PDO("mysql:host=$host;port=$port;dbname=$db", $user, $password);
-            self::$instance->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            try {
+                $pdo = new PDO("mysql:host=$host;port=$port;dbname=$db", $user, $pass);
+                $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            } catch (PDOException $e) {
+                die("Erro ao conectar ao banco de dados: " . $e->getMessage());
+            }
         }
         return self::$instance;
     }
