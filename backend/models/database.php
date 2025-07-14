@@ -1,6 +1,5 @@
 <?php
 class Database {
-class Database {
     private static $host = 'mysql.railway.internal'; // host público do Railway
     private static $port = 3306;                    // porta pública
     private static $dbName = 'railway';             // nome do banco
@@ -21,7 +20,7 @@ class Database {
         }
     }
 }
-}
+
 ?>
 
 
