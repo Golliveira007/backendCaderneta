@@ -1,10 +1,11 @@
 <?php
 class Database {
-    private static $host = 'mysql.railway.internal'; // 👉 MYSQLHOST
-    private static $dbName = 'railway';               // 👉 MYSQLDATABASE
-    private static $username = 'root';             // 👉 MYSQLUSER
-    private static $password = 'ZjodAlDxngRCKLrgVzkXaUcslMamDmhV';               // 👉 MYSQLPASSWORD
-    private static $port = 3306;                            // 👉 ou use MYSQLPORT
+class Database {
+    private static $host = 'mysql.railway.internal'; // host público do Railway
+    private static $port = 3306;                    // porta pública
+    private static $dbName = 'railway';             // nome do banco
+    private static $username = 'root';               // usuário
+    private static $password = 'ZjodAlDxngRCKLrgVzkXaUcslMamDmhV'; // senha
 
     public static function getConnection() {
         try {
@@ -20,4 +21,7 @@ class Database {
         }
     }
 }
+}
 ?>
+
+
