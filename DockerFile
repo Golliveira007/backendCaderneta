@@ -1,7 +1,23 @@
-# Exemplo com PHP + Apache:
+# Usa imagem PHP com Apache
 FROM php:8.1-apache
+
+# Define o diretório de trabalho no container
 WORKDIR /var/www/html
-COPY . .
+
+# Copia apenas a pasta backend (onde está o index.php)
+COPY backend/ /var/www/html
+
+# Instala extensões necessárias
 RUN docker-php-ext-install pdo pdo_mysql
+
+# Habilita mod_rewrite (caso precise de URLs amigáveis)
+RUN a2enmod rewrite
+
+# Garante permissões
+RUN chmod -R 755 /var/www/html
+
+# Expõe a porta padrão do Apache
 EXPOSE 80
+
+# Inicia o Apache
 CMD ["apache2-foreground"]
